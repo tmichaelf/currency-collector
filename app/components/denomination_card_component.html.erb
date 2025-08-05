@@ -19,7 +19,7 @@
   <div class="card-footer bg-transparent">
     <div class="d-flex justify-content-between align-items-center">
       <span class="badge bg-info"><%= denomination.currency_collections.count %> in collections</span>
-      <%= link_to "View Details", currency_denomination_path(denomination), class: "btn btn-outline-primary btn-sm" %>
+      <%= link_to "View Details", currency_currency_denomination_path(denomination.currency, denomination), class: "btn btn-outline-primary btn-sm" %>
     </div>
   </div>
 </div> 
