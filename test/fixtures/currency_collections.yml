@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  currency_denomination: one
+  quantity: 1
+  condition: MyString
+  notes: MyText
+  acquired_date: 2025-08-05
+
+two:
+  user: two
+  currency_denomination: two
+  quantity: 1
+  condition: MyString
+  notes: MyText
+  acquired_date: 2025-08-05

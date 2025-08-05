@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Collections", currency_collections_path %></li>
+        <li class="breadcrumb-item active">New Collection</li>
+      </ol>
+    </nav>
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Add New Collection Item</h1>
+      <div>
+        <%= link_to "Back to Collections", currency_collections_path, class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-body">
+        <%= form_with(model: @collection, local: true) do |form| %>
+          <% if @collection.errors.any? %>
+            <div class="alert alert-danger">
+              <h4><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h4>
+              <ul>
+                <% @collection.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <%= form.label :currency_denomination_id, "Denomination", class: "form-label" %>
+                <%= form.select :currency_denomination_id, 
+                    @denominations.map { |d| ["#{d.name} (#{d.currency.name})", d.id] },
+                    { prompt: "Select a denomination" },
+                    { class: "form-select" } %>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="mb-3">
+                <%= form.label :quantity, class: "form-label" %>
+                <%= form.number_field :quantity, class: "form-control", min: 1 %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <%= form.label :condition, class: "form-label" %>
+                <%= form.select :condition, 
+                    [['Mint', 'mint'], ['Uncirculated', 'uncirculated'], ['Excellent', 'excellent'], 
+                     ['Very Good', 'very_good'], ['Good', 'good'], ['Fair', 'fair'], ['Poor', 'poor']],
+                    { prompt: "Select condition" },
+                    { class: "form-select" } %>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="mb-3">
+                <%= form.label :acquired_date, class: "form-label" %>
+                <%= form.date_field :acquired_date, class: "form-control" %>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :notes, class: "form-label" %>
+            <%= form.text_area :notes, class: "form-control", rows: 3, placeholder: "Any additional notes about this item..." %>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <%= link_to "Cancel", currency_collections_path, class: "btn btn-outline-secondary" %>
+            <%= form.submit "Add to Collection", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Collection Tips</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li class="mb-2">• Record the condition accurately</li>
+          <li class="mb-2">• Note the acquisition date</li>
+          <li class="mb-2">• Add detailed notes for rare items</li>
+          <li class="mb-2">• Keep track of your collection value</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

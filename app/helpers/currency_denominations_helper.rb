@@ -1,0 +1,2 @@
+module CurrencyDenominationsHelper
+end

@@ -1,0 +1,2 @@
+module CurrencyCollectionsHelper
+end

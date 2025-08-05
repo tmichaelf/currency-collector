@@ -1,0 +1,14 @@
+<div class="card h-100 shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title"><%= currency.name %></h5>
+    <h6 class="card-subtitle mb-2 text-muted"><%= currency.code %></h6>
+    <p class="card-text"><%= currency.country %></p>
+    <p class="card-text small"><%= truncate(currency.description, length: 100) %></p>
+  </div>
+  <div class="card-footer bg-transparent">
+    <div class="d-flex justify-content-between align-items-center">
+      <span class="badge bg-primary"><%= currency.currency_denominations.count %> denominations</span>
+      <%= link_to "View Details", currency_path(currency), class: "btn btn-outline-primary btn-sm" %>
+    </div>
+  </div>
+</div> 
