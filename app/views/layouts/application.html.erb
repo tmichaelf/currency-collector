@@ -38,6 +38,11 @@
             <li class="nav-item">
               <%= link_to "Collections", currency_collections_path, class: "nav-link" %>
             </li>
+            <% if Rails.env.development? %>
+              <li class="nav-item">
+                <%= link_to "Admin", admin_path, class: "nav-link" %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>

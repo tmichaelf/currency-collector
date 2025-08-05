@@ -1,15 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  code: MyString
-  country: MyString
-  description: MyText
-  is_active: false
+  name: "United States Dollar"
+  code: "USD"
+  country: "United States"
+  description: "The official currency of the United States"
+  is_active: true
 
 two:
-  name: MyString
-  code: MyString
-  country: MyString
-  description: MyText
-  is_active: false
+  name: "Euro"
+  code: "EUR"
+  country: "European Union"
+  description: "The official currency of the European Union"
+  is_active: true

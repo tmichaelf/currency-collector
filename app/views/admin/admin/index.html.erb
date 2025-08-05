@@ -1,0 +1,91 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4">Admin Dashboard</h1>
+      
+      <div class="row mb-4">
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title"><%= @currencies.count %></h5>
+              <p class="card-text">Currencies</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title"><%= CurrencyDenomination.count %></h5>
+              <p class="card-text">Denominations</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title"><%= CurrencyCollection.count %></h5>
+              <p class="card-text">Collections</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center">
+            <div class="card-body">
+              <h5 class="card-title"><%= @denominations_without_images.count %></h5>
+              <p class="card-text">Need Images</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Quick Actions</h5>
+            </div>
+            <div class="card-body">
+              <div class="d-grid gap-2">
+                <%= link_to "Bulk Image Upload", admin_bulk_image_upload_path, class: "btn btn-primary" %>
+                <%= link_to "Image Management", admin_image_management_path, class: "btn btn-info" %>
+                <%= link_to "View All Currencies", currencies_path, class: "btn btn-secondary" %>
+                <%= link_to "View All Collections", currency_collections_path, class: "btn btn-secondary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Denominations Without Images</h5>
+            </div>
+            <div class="card-body">
+              <% if @denominations_without_images.any? %>
+                <div class="list-group">
+                  <% @denominations_without_images.limit(10).each do |denomination| %>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                      <div>
+                        <strong><%= denomination.name %></strong>
+                        <br>
+                        <small class="text-muted"><%= denomination.currency.name %></small>
+                      </div>
+                      <%= link_to "Add Images", edit_currency_currency_denomination_path(denomination.currency, denomination), class: "btn btn-sm btn-outline-primary" %>
+                    </div>
+                  <% end %>
+                </div>
+                <% if @denominations_without_images.count > 10 %>
+                  <div class="mt-3 text-center">
+                    <small class="text-muted">... and <%= @denominations_without_images.count - 10 %> more</small>
+                  </div>
+                <% end %>
+              <% else %>
+                <p class="text-muted mb-0">All denominations have images!</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

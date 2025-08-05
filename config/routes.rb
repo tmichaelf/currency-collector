@@ -9,6 +9,15 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
+  # Admin routes
+  namespace :admin do
+    get '/', to: 'admin#index'
+    get '/bulk_image_upload', to: 'admin#bulk_image_upload'
+    post '/process_bulk_upload', to: 'admin#process_bulk_upload'
+    get '/image_management', to: 'admin#image_management'
+    delete '/delete_image/:id/:image_type', to: 'admin#delete_image', as: :delete_image
+  end
+
   # Currency routes
   resources :currencies, only: [:index, :show] do
     resources :currency_denominations, only: [:index, :show, :edit, :update]

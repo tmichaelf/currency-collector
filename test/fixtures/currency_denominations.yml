@@ -2,18 +2,18 @@
 
 one:
   currency: one
-  name: MyString
-  value: 9.99
-  denomination_type: MyString
-  year_introduced: 1
-  year_discontinued: 1
-  is_active: false
+  name: "Penny"
+  value: 0.01
+  denomination_type: "coin"
+  year_introduced: 1793
+  year_discontinued:
+  is_active: true
 
 two:
-  currency: two
-  name: MyString
-  value: 9.99
-  denomination_type: MyString
-  year_introduced: 1
-  year_discontinued: 1
-  is_active: false
+  currency: one
+  name: "Nickel"
+  value: 0.05
+  denomination_type: "coin"
+  year_introduced: 1866
+  year_discontinued:
+  is_active: true

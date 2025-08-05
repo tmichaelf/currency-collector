@@ -1,0 +1,98 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Bulk Image Upload</h1>
+        <%= link_to "← Back to Admin", admin_path, class: "btn btn-outline-secondary" %>
+      </div>
+      
+      <div class="alert alert-info">
+        <h5>Instructions:</h5>
+        <ul class="mb-0">
+          <li>Enter image URLs for obverse and reverse images</li>
+          <li>Images will be automatically downloaded and attached</li>
+          <li>Supported formats: JPG, PNG, GIF</li>
+          <li>Make sure URLs are publicly accessible</li>
+        </ul>
+      </div>
+      
+      <div class="card">
+        <div class="card-header">
+          <h5 class="mb-0">Upload Images by URL</h5>
+        </div>
+        <div class="card-body">
+          <%= form_with url: admin_process_bulk_upload_path, method: :post, local: true do |form| %>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <%= form.label :denomination_id, "Select Denomination", class: "form-label" %>
+                  <%= form.select :denomination_id, 
+                      options_from_collection_for_select(@denominations, :id, :display_name), 
+                      { prompt: "Choose a denomination..." }, 
+                      { class: "form-select" } %>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <%= form.label :obverse_url, "Obverse Image URL", class: "form-label" %>
+                  <%= form.url_field :obverse_url, class: "form-control", placeholder: "https://example.com/obverse.jpg" %>
+                  <div class="form-text">Front side of the currency</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <%= form.label :reverse_url, "Reverse Image URL", class: "form-label" %>
+                  <%= form.url_field :reverse_url, class: "form-control", placeholder: "https://example.com/reverse.jpg" %>
+                  <div class="form-text">Back side of the currency</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="d-grid">
+              <%= form.submit "Upload Images", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="mt-4">
+        <h3>Sample Image Sources</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="mb-0">US Currency Sources</h6>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                  <li><strong>US Mint:</strong> usmint.gov</li>
+                  <li><strong>Federal Reserve:</strong> federalreserve.gov</li>
+                  <li><strong>Wikipedia Commons:</strong> commons.wikimedia.org</li>
+                  <li><strong>Numista:</strong> en.numista.com</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h6 class="mb-0">Image Guidelines</h6>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                  <li>High resolution (at least 800x600)</li>
+                  <li>Good lighting and contrast</li>
+                  <li>Full denomination visible</li>
+                  <li>Public domain or licensed for use</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
