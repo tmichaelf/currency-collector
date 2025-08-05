@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   # Currency routes
   resources :currencies, only: [:index, :show] do
-    resources :currency_denominations, only: [:index, :show]
+    resources :currency_denominations, only: [:index, :show, :edit, :update]
   end
   
   # Collection routes

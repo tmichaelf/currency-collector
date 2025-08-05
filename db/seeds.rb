@@ -1,4 +1,4 @@
-# Create US Dollar currency
+`# Create US Dollar currency
 usd = Currency.find_or_create_by!(code: 'USD') do |currency|
   currency.name = 'United States Dollar'
   currency.country = 'United States'

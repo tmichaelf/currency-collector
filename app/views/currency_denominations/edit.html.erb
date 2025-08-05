@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-12">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Currencies", currencies_path %></li>
+        <li class="breadcrumb-item"><%= link_to @denomination.currency.name, currency_path(@denomination.currency) %></li>
+        <li class="breadcrumb-item"><%= link_to @denomination.name, currency_currency_denomination_path(@denomination.currency, @denomination) %></li>
+        <li class="breadcrumb-item active">Edit Images</li>
+      </ol>
+    </nav>
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1>Edit <%= @denomination.name %> Images</h1>
+      <div>
+        <%= link_to "Back to Denomination", currency_currency_denomination_path(@denomination.currency, @denomination), class: "btn btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Upload Historical Images</h5>
+      </div>
+      <div class="card-body">
+        <%= form_with(model: [@denomination.currency, @denomination], local: true) do |form| %>
+          <% if @denomination.errors.any? %>
+            <div class="alert alert-danger">
+              <h4><%= pluralize(@denomination.errors.count, "error") %> prohibited this denomination from being saved:</h4>
+              <ul>
+                <% @denomination.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <%= form.label :obverse_image, "Obverse (Front) Image", class: "form-label" %>
+                <%= form.file_field :obverse_image, class: "form-control", accept: "image/*" %>
+                <div class="form-text">Upload the front/obverse side of the denomination</div>
+              </div>
+              
+              <% if @denomination.obverse_image.attached? %>
+                <div class="mb-3">
+                  <h6>Current Obverse Image:</h6>
+                  <%= image_tag @denomination.obverse_image, class: "img-fluid rounded", style: "max-height: 200px;" %>
+                </div>
+              <% end %>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="mb-3">
+                <%= form.label :reverse_image, "Reverse (Back) Image", class: "form-label" %>
+                <%= form.file_field :reverse_image, class: "form-control", accept: "image/*" %>
+                <div class="form-text">Upload the back/reverse side of the denomination</div>
+              </div>
+              
+              <% if @denomination.reverse_image.attached? %>
+                <div class="mb-3">
+                  <h6>Current Reverse Image:</h6>
+                  <%= image_tag @denomination.reverse_image, class: "img-fluid rounded", style: "max-height: 200px;" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <%= link_to "Cancel", currency_currency_denomination_path(@denomination.currency, @denomination), class: "btn btn-outline-secondary" %>
+            <%= form.submit "Update Images", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">Image Guidelines</h5>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li class="mb-2">• Use high-quality, clear images</li>
+          <li class="mb-2">• Ensure good lighting and focus</li>
+          <li class="mb-2">• Include the entire denomination</li>
+          <li class="mb-2">• Supported formats: JPG, PNG, GIF</li>
+          <li class="mb-2">• Maximum file size: 10MB per image</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> 
