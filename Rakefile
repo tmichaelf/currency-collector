@@ -3,4 +3,7 @@
 
 require_relative "config/application"
 
+# Also load tasks from db/tasks to colocate seeders with database concerns
+Dir.glob("db/tasks/**/*.rake").each { |f| import f }
+
 Rails.application.load_tasks
