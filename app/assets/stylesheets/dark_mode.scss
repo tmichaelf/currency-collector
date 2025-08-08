@@ -18,22 +18,39 @@
 }
 
 [data-theme="dark"] {
-  // Dark theme variables
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
-  --bg-tertiary: #404040;
-  --text-primary: #e9ecef;
-  --text-secondary: #adb5bd;
-  --text-muted: #6c757d;
-  --border-color: #495057;
-  --link-color: #6ea8fe;
-  --link-hover-color: #9ec5fe;
-  --card-bg: #2d2d2d;
-  --navbar-bg: #212529;
+  // Dark theme variables (higher contrast)
+  --bg-primary: #0e1116;        /* page background */
+  --bg-secondary: #161b22;      /* surfaces */
+  --bg-tertiary: #1f2630;       /* elevated surfaces */
+  --text-primary: #e6edf3;      /* body text */
+  --text-secondary: #d2dae4;    /* secondary text (lighter for readability) */
+  --text-muted: #c6cfda;        /* small/muted text (light grey) */
+  --border-color: #2b313a;      /* subtle borders */
+  --link-color: #79b8ff;        /* links */
+  --link-hover-color: #a5d6ff;  /* link hover */
+  --card-bg: #161b22;           /* cards */
+  --navbar-bg: #0f141a;         /* navbar */
   --navbar-text: #ffffff;
-  --alert-bg: #1e3a2e;
-  --alert-text: #75b798;
-  --alert-border: #2d5a3d;
+  --alert-bg: #0f2a1f;
+  --alert-text: #8bd3a8;
+  --alert-border: #1e3b2c;
+}
+
+/* Make smaller text lighter grey for readability */
+small,
+.small,
+.card-subtitle,
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Lighten non-small card text (e.g., country line) for readability */
+.card .card-text {
+  color: var(--text-secondary);
+}
+
+.card .card-text.small {
+  color: var(--text-muted);
 }
 
 // Apply CSS variables
@@ -53,13 +70,22 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
-  color: var(--text-muted) !important;
+  color: var(--link-hover-color) !important;
 }
 
 .card {
   background-color: var(--card-bg);
   border-color: var(--border-color);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-title {
+  color: var(--text-primary);
+}
+
+.card-subtitle {
+  color: var(--text-secondary);
 }
 
 .table {
@@ -83,7 +109,7 @@ body {
   background-color: var(--bg-secondary);
   border-color: var(--link-color);
   color: var(--text-primary);
-  box-shadow: 0 0 0 0.25rem rgba(110, 168, 254, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(121, 184, 255, 0.25);
 }
 
 .btn-outline-primary {
@@ -94,7 +120,7 @@ body {
 .btn-outline-primary:hover {
   background-color: var(--link-color);
   border-color: var(--link-color);
-  color: var(--bg-primary);
+  color: #ffffff;
 }
 
 .alert {
@@ -143,7 +169,7 @@ body {
 }
 
 .theme-toggle:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 // Component specific dark mode styles
@@ -186,9 +212,8 @@ body {
   color: var(--text-primary);
 }
 
-.badge {
-  color: var(--bg-primary);
-}
+/* Use default badge colors from Bootstrap for proper contrast */
+/* .badge { } */
 
 .text-dark {
   color: var(--text-primary) !important;
@@ -218,7 +243,7 @@ body {
 .pagination .page-item.active .page-link {
   background-color: var(--link-color);
   border-color: var(--link-color);
-  color: var(--bg-primary);
+  color: #ffffff;
 }
 
 .pagination .page-item.disabled .page-link {
