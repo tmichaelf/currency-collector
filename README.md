@@ -85,6 +85,12 @@ Curated seeders for historical variants:
     bin/rails db:seed:weimar_denominations
     ```
 
+- Third Reich (Reichsmark)
+  - Seed:
+    ```bash
+    bin/rails db:seed:third_reich_denominations
+    ```
+
 These tasks upsert records into `currency_denominations` using fields like `composition`, `design_type`, `series`, and `mint_mark`.
 
 ## Development Setup
