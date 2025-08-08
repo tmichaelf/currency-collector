@@ -1,0 +1,228 @@
+:root {
+  // Light theme variables
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  --border-color: #dee2e6;
+  --link-color: #0d6efd;
+  --link-hover-color: #0a58ca;
+  --card-bg: #ffffff;
+  --navbar-bg: #0d6efd;
+  --navbar-text: #ffffff;
+  --alert-bg: #d1e7dd;
+  --alert-text: #0f5132;
+  --alert-border: #badbcc;
+}
+
+[data-theme="dark"] {
+  // Dark theme variables
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-tertiary: #404040;
+  --text-primary: #e9ecef;
+  --text-secondary: #adb5bd;
+  --text-muted: #6c757d;
+  --border-color: #495057;
+  --link-color: #6ea8fe;
+  --link-hover-color: #9ec5fe;
+  --card-bg: #2d2d2d;
+  --navbar-bg: #212529;
+  --navbar-text: #ffffff;
+  --alert-bg: #1e3a2e;
+  --alert-text: #75b798;
+  --alert-border: #2d5a3d;
+}
+
+// Apply CSS variables
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+  background-color: var(--navbar-bg) !important;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+  color: var(--navbar-text) !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--text-muted) !important;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.table {
+  color: var(--text-primary);
+}
+
+.table th,
+.table td {
+  border-color: var(--border-color);
+}
+
+.form-control,
+.form-select {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--bg-secondary);
+  border-color: var(--link-color);
+  color: var(--text-primary);
+  box-shadow: 0 0 0 0.25rem rgba(110, 168, 254, 0.25);
+}
+
+.btn-outline-primary {
+  border-color: var(--link-color);
+  color: var(--link-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--link-color);
+  border-color: var(--link-color);
+  color: var(--bg-primary);
+}
+
+.alert {
+  background-color: var(--alert-bg);
+  border-color: var(--alert-border);
+  color: var(--alert-text);
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.modal-header,
+.modal-footer {
+  border-color: var(--border-color);
+}
+
+.modal-title {
+  color: var(--text-primary);
+}
+
+.dropdown-menu {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+.dropdown-item {
+  color: var(--text-primary);
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+// Dark mode toggle button styles
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--navbar-text);
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+// Component specific dark mode styles
+.currency-card,
+.denomination-card {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+// Ensure proper contrast for text in dark mode
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
+
+// Fix for Bootstrap icons in dark mode
+.bi {
+  color: inherit;
+}
+
+// Denomination image container
+.denomination-image-container {
+  background-color: var(--bg-secondary);
+  transition: background-color 0.3s ease;
+}
+
+// Additional dark mode improvements
+.list-group-item {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.list-group-item-action:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.badge {
+  color: var(--bg-primary);
+}
+
+.text-dark {
+  color: var(--text-primary) !important;
+}
+
+.bg-light {
+  background-color: var(--bg-secondary) !important;
+}
+
+.border {
+  border-color: var(--border-color) !important;
+}
+
+// Ensure proper styling for pagination
+.pagination .page-link {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--link-color);
+}
+
+.pagination .page-link:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+  color: var(--link-hover-color);
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--link-color);
+  border-color: var(--link-color);
+  color: var(--bg-primary);
+}
+
+.pagination .page-item.disabled .page-link {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text-muted);
+}
