@@ -5,8 +5,9 @@ class ThirdReichDenominationsSeeder
       name: 'Reichsmark (Third Reich)',
       country: 'Germany (Third Reich)',
       description: 'Currency of Nazi Germany, circa 1933–1945',
-      is_active: false
+      is_active: true
     )
+    @currency.update!(is_active: true) unless @currency.is_active?
   end
 
   def seed_all

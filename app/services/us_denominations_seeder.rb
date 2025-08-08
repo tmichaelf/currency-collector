@@ -2,6 +2,7 @@ class UsDenominationsSeeder
   def initialize
     @usd = Currency.find_by(code: 'USD')
     raise 'USD currency not found. Seed USD first.' unless @usd
+    @usd.update!(is_active: true) unless @usd.is_active?
   end
 
   def seed_all
