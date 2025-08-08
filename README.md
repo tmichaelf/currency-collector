@@ -37,6 +37,12 @@ Curated seeders for historical variants:
     bin/rake us_denominations:seed
     ```
 
+- U.S. Fractional Currency (1862–1876)
+  - Seed:
+    ```bash
+    bin/rake us_fractional_denominations:seed
+    ```
+
 - Soviet denominations (USSR)
   - Seed (auto-creates `SUR` currency if missing):
     ```bash
