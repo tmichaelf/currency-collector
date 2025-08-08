@@ -3,7 +3,7 @@ namespace :db do
     desc "Seed Weimar Republic currency denominations (Papiermark/Rentenmark)"
     task weimar_denominations: :environment do
       puts "Seeding Weimar Republic denominations..."
-      WeimarDenominationsSeeder.new.seed_all
+      Seeders::WeimarDenominationsSeeder.new.seed_all
       puts "Done."
     end
   end

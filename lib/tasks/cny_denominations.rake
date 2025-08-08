@@ -3,7 +3,7 @@ namespace :db do
     desc "Seed CNY (Renminbi) denominations"
     task cny_denominations: :environment do
       puts "Seeding CNY denominations..."
-      CnyDenominationsSeeder.new.seed_all
+      Seeders::CnyDenominationsSeeder.new.seed_all
       puts "Done."
     end
   end

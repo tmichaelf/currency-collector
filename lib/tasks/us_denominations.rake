@@ -3,7 +3,7 @@ namespace :db do
     desc "Seed all US denomination variants (coins and bills)"
     task us_denominations: :environment do
       puts "Seeding all US denomination variants..."
-      seeder = UsDenominationsSeeder.new
+      seeder = Seeders::UsDenominationsSeeder.new
       seeder.seed_all
       puts "Done."
 

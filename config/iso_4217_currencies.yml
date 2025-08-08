@@ -1,0 +1,61 @@
+---
+# Optional external ISO 4217 source. If present, overrides inline fallback list.
+# Keep entries minimal: code, name, country
+- code: USD
+  name: United States Dollar
+  country: United States
+- code: EUR
+  name: Euro
+  country: European Union
+- code: GBP
+  name: Pound Sterling
+  country: United Kingdom
+- code: JPY
+  name: Japanese Yen
+  country: Japan
+- code: CNY
+  name: Chinese Yuan
+  country: China
+- code: AUD
+  name: Australian Dollar
+  country: Australia
+- code: CAD
+  name: Canadian Dollar
+  country: Canada
+- code: CHF
+  name: Swiss Franc
+  country: Switzerland
+- code: SEK
+  name: Swedish Krona
+  country: Sweden
+- code: NOK
+  name: Norwegian Krone
+  country: Norway
+- code: DKK
+  name: Danish Krone
+  country: Denmark
+- code: NZD
+  name: New Zealand Dollar
+  country: New Zealand
+- code: ZAR
+  name: South African Rand
+  country: South Africa
+- code: INR
+  name: Indian Rupee
+  country: India
+- code: KRW
+  name: South Korean Won
+  country: Korea (Republic of)
+- code: BRL
+  name: Brazilian Real
+  country: Brazil
+- code: MXN
+  name: Mexican Peso
+  country: Mexico
+- code: SGD
+  name: Singapore Dollar
+  country: Singapore
+- code: HKD
+  name: Hong Kong Dollar
+  country: Hong Kong
+

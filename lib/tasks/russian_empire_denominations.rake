@@ -3,7 +3,7 @@ namespace :db do
     desc "Seed Imperial Russian Ruble denominations"
     task russian_empire_denominations: :environment do
       puts "Seeding Imperial Russian Ruble denominations..."
-      RussianEmpireDenominationsSeeder.new.seed_all
+      Seeders::RussianEmpireDenominationsSeeder.new.seed_all
       puts "Done."
     end
   end

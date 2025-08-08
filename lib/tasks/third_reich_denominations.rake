@@ -3,7 +3,7 @@ namespace :db do
     desc "Seed Third Reich (Reichsmark) denominations"
     task third_reich_denominations: :environment do
       puts "Seeding Third Reich denominations..."
-      ThirdReichDenominationsSeeder.new.seed_all
+      Seeders::ThirdReichDenominationsSeeder.new.seed_all
       puts "Done."
     end
   end

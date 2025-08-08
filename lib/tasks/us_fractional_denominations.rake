@@ -3,7 +3,7 @@ namespace :db do
     desc "Seed U.S. Fractional Currency (1862–1876) across all five issues"
     task us_fractional_denominations: :environment do
       puts "Seeding U.S. Fractional Currency..."
-      seeder = UsFractionalDenominationsSeeder.new
+      seeder = Seeders::UsFractionalDenominationsSeeder.new
       seeder.seed_all
       puts "Done."
 

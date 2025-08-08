@@ -3,7 +3,7 @@ namespace :db do
     desc "Seed Soviet (USSR) denomination variants"
     task soviet_denominations: :environment do
       puts "Seeding Soviet denomination variants..."
-      seeder = SovietDenominationsSeeder.new
+      seeder = Seeders::SovietDenominationsSeeder.new
       seeder.seed_all
       puts "Done."
 

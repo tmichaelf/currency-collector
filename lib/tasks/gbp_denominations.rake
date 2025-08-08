@@ -3,7 +3,7 @@ namespace :db do
     desc "Seed GBP (Pound Sterling) denominations"
     task gbp_denominations: :environment do
       puts "Seeding GBP denominations..."
-      GbpDenominationsSeeder.new.seed_all
+      Seeders::GbpDenominationsSeeder.new.seed_all
       puts "Done."
     end
   end
