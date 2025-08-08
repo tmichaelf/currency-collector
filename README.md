@@ -34,19 +34,55 @@ Curated seeders for historical variants:
 - All US denominations (coins and bills)
   - Seed:
     ```bash
-    bin/rake us_denominations:seed
+    bin/rails db:seed:us_denominations
     ```
 
 - U.S. Fractional Currency (1862–1876)
   - Seed:
     ```bash
-    bin/rake us_fractional_denominations:seed
+    bin/rails db:seed:us_fractional_denominations
     ```
 
 - Soviet denominations (USSR)
   - Seed (auto-creates `SUR` currency if missing):
     ```bash
-    bin/rake soviet_denominations:seed
+    bin/rails db:seed:soviet_denominations
+    ```
+
+- CNY (Renminbi, China)
+  - Seed:
+    ```bash
+    bin/rails db:seed:cny_denominations
+    ```
+
+- JPY (Japanese Yen)
+  - Seed:
+    ```bash
+    bin/rails db:seed:jpy_denominations
+    ```
+
+- GBP (Pound Sterling, UK)
+  - Seed:
+    ```bash
+    bin/rails db:seed:gbp_denominations
+    ```
+
+- Russian Empire (Imperial Ruble)
+  - Seed:
+    ```bash
+    bin/rails db:seed:russian_empire_denominations
+    ```
+
+- Russian Federation (modern RUB)
+  - Seed:
+    ```bash
+    bin/rails db:seed:russian_federation_denominations
+    ```
+
+- Weimar Republic (Germany)
+  - Seed:
+    ```bash
+    bin/rails db:seed:weimar_denominations
     ```
 
 These tasks upsert records into `currency_denominations` using fields like `composition`, `design_type`, `series`, and `mint_mark`.
