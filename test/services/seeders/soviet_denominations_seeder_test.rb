@@ -15,7 +15,7 @@ class SovietDenominationsSeederTest < ActiveSupport::TestCase
       '20 Kopeks (1961–1991)',
       '1 Ruble (1961 series)'
     ].each do |name|
-      assert CurrencyDenomination.find_by(currency: sur, name: name)
+      assert CurrencyDenominationVariant.joins(:currency_denomination).where(currency_denominations: { currency_id: sur.id }).find_by(name: name)
     end
   end
 end

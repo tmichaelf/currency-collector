@@ -19,11 +19,23 @@ module Seeders
     private
 
     def upsert_denomination(attrs)
-      existing = CurrencyDenomination.find_by(currency: @currency, name: attrs[:name], value: attrs[:value])
-      if existing
-        existing.update!(attrs.except(:value, :name).merge(currency: @currency))
+      base = CurrencyDenomination.find_or_create_by!(
+        currency: @currency,
+        value: attrs[:value],
+        denomination_type: attrs[:denomination_type]
+      ) do |d|
+        d.name = format('%<v>.2f %<t>s', v: attrs[:value], t: attrs[:denomination_type])
+        d.is_active = true
+      end
+
+      variant = CurrencyDenominationVariant.find_by(currency_denomination: base, name: attrs[:name])
+      if variant
+        variant.update!(attrs.slice(:year_introduced, :year_discontinued, :mint_mark, :composition, :design_type, :series, :is_active))
       else
-        CurrencyDenomination.create!(attrs.merge(currency: @currency))
+        CurrencyDenominationVariant.create!(
+          { currency_denomination: base, name: attrs[:name] }
+            .merge(attrs.slice(:year_introduced, :year_discontinued, :mint_mark, :composition, :design_type, :series, :is_active))
+        )
       end
     end
 

@@ -15,7 +15,7 @@ class ThirdReichDenominationsSeederTest < ActiveSupport::TestCase
       '2 Reichsmark (coin)',
       '100 Reichsmark (note)'
     ].each do |name|
-      assert CurrencyDenomination.find_by(currency: reich, name: name)
+      assert CurrencyDenominationVariant.joins(:currency_denomination).where(currency_denominations: { currency_id: reich.id }).find_by(name: name)
     end
   end
 end

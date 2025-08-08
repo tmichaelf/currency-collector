@@ -56,9 +56,10 @@ class CurrencyDenominationTest < ActiveSupport::TestCase
     assert @denomination.valid?
   end
 
-  test "year_introduced should be present" do
+  # Base denominations do not require year fields; variants carry them
+  test "year_introduced is optional on base denomination" do
     @denomination.year_introduced = nil
-    assert_not @denomination.valid?
+    assert @denomination.valid?
   end
 
   test "year_introduced should be greater than zero" do

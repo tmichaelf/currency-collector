@@ -14,19 +14,38 @@ module Seeders
     private
 
     def upsert_denomination(attrs)
-      existing = CurrencyDenomination.find_by(
+      base = CurrencyDenomination.find_or_create_by!(
         currency: @usd,
-        name: attrs[:name],
-        value: attrs[:value]
-      )
+        value: attrs[:value],
+        denomination_type: attrs[:denomination_type]
+      ) do |d|
+        d.name = base_name_for_usd(attrs[:denomination_type], attrs[:value])
+        d.is_active = true
+      end
 
-      if existing
-        existing.update!(attrs.except(:value, :name).merge(currency: @usd))
+      variant = CurrencyDenominationVariant.find_by(currency_denomination: base, name: attrs[:name])
+      if variant
+        variant.update!(attrs.slice(:year_introduced, :year_discontinued, :mint_mark, :composition, :design_type, :series, :is_active))
         :updated
       else
-        CurrencyDenomination.create!(attrs.merge(currency: @usd))
+        CurrencyDenominationVariant.create!(
+          { currency_denomination: base, name: attrs[:name] }
+            .merge(attrs.slice(:year_introduced, :year_discontinued, :mint_mark, :composition, :design_type, :series, :is_active))
+        )
         :created
       end
+    end
+
+    def base_name_for_usd(type, value)
+      mapping = {
+        'coin' => {
+          0.01 => 'Penny', 0.05 => 'Nickel', 0.10 => 'Dime', 0.25 => 'Quarter', 0.50 => 'Half Dollar', 1.00 => 'Dollar Coin'
+        },
+        'bill' => {
+          1.00 => 'One Dollar Bill', 2.00 => 'Two Dollar Bill', 5.00 => 'Five Dollar Bill', 10.00 => 'Ten Dollar Bill', 20.00 => 'Twenty Dollar Bill', 50.00 => 'Fifty Dollar Bill', 100.00 => 'One Hundred Dollar Bill'
+        }
+      }
+      mapping[type]&.[](value) || format('%<v>.2f %<t>s', v: value, t: type)
     end
 
     def seed_us_coins

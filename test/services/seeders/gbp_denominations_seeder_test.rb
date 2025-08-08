@@ -11,7 +11,7 @@ class GbpDenominationsSeederTest < ActiveSupport::TestCase
     assert gbp.is_active
 
     %w[1\ Penny 50\ Pence Two\ Pounds\ (coin) £5\ (polymer) £50\ (polymer)].each do |name|
-      assert CurrencyDenomination.find_by(currency: gbp, name: name)
+      assert CurrencyDenominationVariant.joins(:currency_denomination).where(currency_denominations: { currency_id: gbp.id }).find_by(name: name)
     end
   end
 end

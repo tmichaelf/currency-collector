@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_08_011958) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_09_002000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -61,8 +61,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_08_011958) do
     t.date "acquired_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "currency_denomination_variant_id"
     t.index ["currency_denomination_id"], name: "index_currency_collections_on_currency_denomination_id"
+    t.index ["currency_denomination_variant_id"], name: "index_currency_collections_on_currency_denomination_variant_id"
     t.index ["user_id"], name: "index_currency_collections_on_user_id"
+  end
+
+  create_table "currency_denomination_variants", force: :cascade do |t|
+    t.bigint "currency_denomination_id", null: false
+    t.string "name", null: false
+    t.integer "year_introduced"
+    t.integer "year_discontinued"
+    t.string "mint_mark"
+    t.string "composition"
+    t.string "design_type"
+    t.string "series"
+    t.boolean "is_active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currency_denomination_id"], name: "idx_on_currency_denomination_id_ab43b5df42"
   end
 
   create_table "currency_denominations", force: :cascade do |t|
@@ -93,7 +110,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_08_011958) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "currency_collections", "currency_denomination_variants"
   add_foreign_key "currency_collections", "currency_denominations"
   add_foreign_key "currency_collections", "users"
+  add_foreign_key "currency_denomination_variants", "currency_denominations"
   add_foreign_key "currency_denominations", "currencies"
 end

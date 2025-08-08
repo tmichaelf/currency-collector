@@ -11,7 +11,11 @@ class UsDenominationsSeederTest < ActiveSupport::TestCase
     seeder = Seeders::UsDenominationsSeeder.new
     assert_nothing_raised { seeder.seed_all }
 
-    # spot check some denominations
+    # spot check base + variant
+    base = CurrencyDenomination.find_by(currency: @usd, value: 0.01, denomination_type: 'coin')
+    assert_not_nil base
+    assert_equal 'Penny', base.name
+
     names = [
       'Lincoln Shield Cent',
       'Roosevelt Dime (Clad)',
@@ -21,12 +25,12 @@ class UsDenominationsSeederTest < ActiveSupport::TestCase
       'One Hundred Dollar Bill (Small Size)'
     ]
     names.each do |n|
-      assert CurrencyDenomination.find_by(currency: @usd, name: n), "Expected #{n} to be seeded"
+      assert CurrencyDenominationVariant.joins(:currency_denomination).where(currency_denomination: { currency_id: @usd.id }).find_by(name: n), "Expected #{n} to be seeded"
     end
 
-    before = CurrencyDenomination.where(currency: @usd).count
+    before = CurrencyDenominationVariant.joins(:currency_denomination).where(currency_denominations: { currency_id: @usd.id }).count
     assert_nothing_raised { seeder.seed_all }
-    after = CurrencyDenomination.where(currency: @usd).count
+    after = CurrencyDenominationVariant.joins(:currency_denomination).where(currency_denominations: { currency_id: @usd.id }).count
     assert_equal before, after, 'Seeding should be idempotent'
   end
 end

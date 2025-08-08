@@ -16,7 +16,7 @@ class CnyDenominationsSeederTest < ActiveSupport::TestCase
       '5 Yuan (note)',
       '100 Yuan (note)'
     ].each do |name|
-      assert CurrencyDenomination.find_by(currency: cny, name: name)
+      assert CurrencyDenominationVariant.joins(:currency_denomination).where(currency_denominations: { currency_id: cny.id }).find_by(name: name)
     end
   end
 end

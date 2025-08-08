@@ -15,7 +15,7 @@ class RussianEmpireDenominationsSeederTest < ActiveSupport::TestCase
       '5 Rubles (gold)',
       '100 Rubles (note)'
     ].each do |name|
-      assert CurrencyDenomination.find_by(currency: imp, name: name)
+      assert CurrencyDenominationVariant.joins(:currency_denomination).where(currency_denominations: { currency_id: imp.id }).find_by(name: name)
     end
   end
 end
