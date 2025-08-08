@@ -31,13 +31,6 @@ The application includes a comprehensive dark mode feature:
 
 Curated seeders for historical variants:
 
-- US Penny variants
-  - Seed/list:
-    ```bash
-    bin/rake penny_variants:scrape
-    bin/rake penny_variants:list
-    ```
-
 - All US denominations (coins and bills)
   - Seed:
     ```bash
