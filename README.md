@@ -27,6 +27,31 @@ The application includes a comprehensive dark mode feature:
 2. Click the icon to toggle between light and dark themes
 3. Your preference will be automatically saved and restored on future visits
 
+## Data Seeding Tasks
+
+Curated seeders for historical variants:
+
+- US Penny variants
+  - Seed/list:
+    ```bash
+    bin/rake penny_variants:scrape
+    bin/rake penny_variants:list
+    ```
+
+- All US denominations (coins and bills)
+  - Seed:
+    ```bash
+    bin/rake us_denominations:seed
+    ```
+
+- Soviet denominations (USSR)
+  - Seed (auto-creates `SUR` currency if missing):
+    ```bash
+    bin/rake soviet_denominations:seed
+    ```
+
+These tasks upsert records into `currency_denominations` using fields like `composition`, `design_type`, `series`, and `mint_mark`.
+
 ## Development Setup
 
 ### Prerequisites
